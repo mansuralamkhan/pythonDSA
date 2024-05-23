@@ -1,47 +1,54 @@
-def dijkstra(graph, source):
+def bellman_ford(graph, source):
+    # Step 1: Initialize distances and predecessors
     distances = {vertex: float('inf') for vertex in graph}
+    predecessors = {vertex: None for vertex in graph}
     distances[source] = 0
-    previous_nodes = {vertex: None for vertex in graph}
-    visited = set()
 
-    while len(visited) < len(graph):
-        min_distance_vertex = None
+    # Step 2: Relax all edges |V| - 1 times
+    for _ in range(len(graph) - 1):
         for vertex in graph:
-            if vertex not in visited:
-                if min_distance_vertex is None or distances[vertex] < distances[min_distance_vertex]:
-                    min_distance_vertex = vertex
+            for neighbor, weight in graph[vertex].items():
+                if distances[vertex] + weight < distances[neighbor]:
+                    distances[neighbor] = distances[vertex] + weight
+                    predecessors[neighbor] = vertex
 
-        if min_distance_vertex is None:
-            break
+    # Step 3: Check for negative-weight cycles
+    for vertex in graph:
+        for neighbor, weight in graph[vertex].items():
+            if distances[vertex] + weight < distances[neighbor]:
+                raise ValueError("Graph contains a negative weight cycle")
 
-        visited.add(min_distance_vertex)
+    return distances, predecessors
 
-        for neighbour, weight in graph[min_distance_vertex].items():
-            distance = distances[min_distance_vertex] + weight
-            if distance < distances[neighbour]:
-                distances[neighbour] = distance
-                previous_nodes[neighbour] = min_distance_vertex
-
-    return distances, previous_nodes
-
-def get_shortest_path(previous_nodes, target):
+def get_shortest_path(predecessors, target):
     path = []
     while target is not None:
         path.append(target)
-        target = previous_nodes[target]
+        target = predecessors[target]
     path.reverse()
     return path
 
-# Define the graph and source vertex
+# Example usage
 graph = {
     'A': {'B': 5, 'C': 3},
-    'B': {'A': 5, 'C': 2, 'D': 1},
-    'C': {'A': 3, 'B': 2, 'D': 4, 'E': 6},
-    'D': {'B': 1, 'C': 4, 'E': 8, 'F': 2},
-    'E': {'C': 6, 'D': 8, 'F': 7},
-    'F': {'D': 2, 'E': 7}
+    'B': {'C': 2, 'D': 1},
+    'C': {'D': 4, 'E': 6},
+    'D': {'F': 2},
+    'E': {'F': 7},
+    'F': {}
 }
+
 source_vertex = 'A'
-shortest_distances, previous_nodes = dijkstra(graph, source_vertex)
-print("Shortest distances: ", shortest_distances)
-print("Shortest path from A to F: ", get_shortest_path(previous_nodes, 'F'))
+try:
+    shortest_distances, predecessors = bellman_ford(graph, source_vertex)
+    print("Shortest distances: ", shortest_distances)
+
+    # Print shortest path from source to each vertex
+    for vertex in graph:
+        if vertex == source_vertex:
+            continue
+        path = get_shortest_path(predecessors, vertex)
+        print(f"Shortest path from {source_vertex} to {vertex}: ", path)
+
+except ValueError as e:
+    print(e)

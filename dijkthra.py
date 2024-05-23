@@ -46,7 +46,9 @@
 def dijikstra(graph, source):
     distances = {vertex: float('inf') for vertex in graph}
     distances[source] = 0
+
     previous_nodes = {vertex: None for vertex in graph}
+
 
     visited = set()
 
@@ -58,7 +60,7 @@ def dijikstra(graph, source):
                     min_distance_vertex = vertex
 
         if min_distance_vertex is None:
-                break
+            break
         visited.add(min_distance_vertex)
 
         for neighbour, weight in graph[min_distance_vertex].items():
@@ -66,15 +68,16 @@ def dijikstra(graph, source):
             if distance < distances[neighbour]:
                 distances[neighbour] = distance
                 previous_nodes[neighbour] = min_distance_vertex
-    return distance, previous_nodes
+
+    return distances, previous_nodes
 
 def get_shortest_path(previous_nodes, target):
-     path = []
-     while target is not None:
-          path.append(target)
-          target = previous_nodes[target]
-     path.reverse()
-     return path
+    path = []
+    while target is not None:
+        path.append(target)
+        target = previous_nodes[target]
+    path.reverse()
+    return path
 
 graph = {
     'A': {'B': 5, 'C': 3},
@@ -88,6 +91,11 @@ source_vertex = 'A'
 shortest_distances, previous_nodes = dijikstra(graph, source_vertex)
 print("Shortest distances: ", shortest_distances)
 print("Shortest path from A to F: ", get_shortest_path(previous_nodes, 'F'))
+
+
+
+
+
 
 
     
