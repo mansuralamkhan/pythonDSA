@@ -1,0 +1,46 @@
+import paramiko
+import sys
+
+def deploy_web_application(package_path, servers_ips, ssh_username, ssh_password, config_files=None ):
+    try:
+        ssh_client = paramiko.SSHClient()
+        ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+
+        for server_ip in servers_ips:
+            print(f"Connecting to {servers_ips}")
+            ssh_client.connect(server_ip, username=ssh_username, password=ssh_password)
+
+            print("Copyting application package..")
+            ftp = ssh_client.open_sftp()
+            ftp.put(package_path, f"tmp/{package_path}")
+
+            ftp.close()
+
+            print("Installing dependencies---")
+            stdin, stdout, stderr = ssh_client.exec_command("apt-get install - y >depend'")
+
+            if config_files:
+                print("Configuration applications")
+                for config_file in config_files:
+                    ftp = ssh_client.open_sftp()
+                    ftp.put(config_file, f"/path/to/application/{config_file}")
+                    ftp.close()
+
+            print("Starting the servers")
+            stdin, stdout, stderr = ssh_client.exec_command("sytemctl start server")
+
+            ssh_client.close()
+
+            print(f" Deployment to {server_ip} completed successfully")
+
+    except Exceptions as e:
+        print(f"Error : {e}")
+        sys.exit(1)
+
+package_path = "/path"
+server_ips = ["d", "df", ""]
+ssh_username = ""
+ssh_password = ""
+config_files = ['']
+
+deploy_web_application(package_pat, server_ips, ssh_username, ssh_password)

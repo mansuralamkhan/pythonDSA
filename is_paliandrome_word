@@ -1,0 +1,16 @@
+def is_paliandrome_wordwise(s):
+
+    words = s.split()
+
+    reversed_s = ' '.join(words[::-1])
+
+    return s == reversed_s
+
+
+print("Input your string")
+input_string = input()
+result = is_paliandrome_wordwise(input_string)
+if result:
+    print("The input string is a paliandrome")
+else:
+    print("The input string is not paliandrome")

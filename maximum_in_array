@@ -1,0 +1,47 @@
+# def find_max(arr):
+
+#     if not arr:
+#         return None
+    
+#     max_element = arr[0]
+
+#     for num in arr:
+#       if num > max_element:
+#         max_element =num
+#     return max_element
+
+# print("Enter an array of numbers")
+
+# array = input()
+# max_num = find_max(array)
+
+# print("Maximum element in the arrays:", max_num)
+
+
+
+# def maximum_in_array(arr):
+#     max_element = arr[0]
+
+#     for num in arr:
+#         if num > max_element:
+#             max_element = num
+#     return max_element
+
+
+# arr = input("Enter the elements of the array seperated by spaces: ").split()
+
+# arr = [int(x) for x in arr]
+# print("Maximu element in the array:", maximum_in_array(arr))
+def manimum_in_array(arr):
+    min_element = arr[0]
+
+    for num in arr:
+        if num < min_element:
+            min_element = num
+    return min_element
+
+
+arr = input("Enter the elements of the array seperated by spaces: ").split()
+
+arr = [int(x) for x in arr]
+print("Minimum element in the array:", manimum_in_array(arr))

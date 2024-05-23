@@ -1,0 +1,21 @@
+def array_average(arr):
+
+    if not arr:
+        return None
+    
+    total_sum = sum(arr)
+
+    num_elements = len(arr)
+
+    average = total_sum / num_elements
+
+    return average
+
+arr = input("Enter the elements of the array seperated by space: ").split()
+
+
+arr = [ int(x) for x in arr]
+
+avg = array_average(arr)
+
+print("Average of elements in the array:", avg)

@@ -1,0 +1,17 @@
+def intersection(arr1, arr2):
+
+    intersect = []
+    
+    for num in arr1:
+        if num in arr2 and num not in intersect:
+            intersect.append(num)
+
+    return intersect
+
+
+arr1 = list(map(int, input("Enter the elements of the first array seperate by space: ").split()))
+arr2 = list(map(int, input("Enter the elements of the second array seperate by space: ").split()))
+
+result = intersection(arr1, arr2)
+
+print("Intersection of two array: ", result)

@@ -1,0 +1,14 @@
+def kth_smallest(arr, k):
+    arr.sort()
+    return arr[k-1]
+
+
+arr = list(map(int, input("Enter the elements").split()))
+k = int(input("Enter the value of K: "))
+
+result = kth_smallest(arr, k)
+
+
+
+
+print(f"The {k}th smallers element in the array is : {result}")

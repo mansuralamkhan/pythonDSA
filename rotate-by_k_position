@@ -1,0 +1,27 @@
+def rotate_array(arr, k):
+
+    n = len(arr)
+    rotated_arr = []
+
+    for i in range(n):
+        new_index = (i + k) % n
+
+        rotated_arr.append(arr[new_index])
+
+    return rotated_arr
+
+
+
+
+
+arr = input("Enter the elements of the array seperated by space:").split()
+arr = [int(x) for x in arr]
+
+k = int(input("Enter the number of positions to rotate the array : "))
+
+rotated_arr = rotate_array(arr, k)
+
+print("Original array;", arr)
+print("Rotated array: ", rotated_arr)
+
+

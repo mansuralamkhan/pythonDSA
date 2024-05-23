@@ -1,0 +1,43 @@
+# def reverse_word(str):
+#     words = str.split()
+
+#     reversed_words = words[::-1]
+
+#     reversed_string = ' '.join(reversed_words)
+
+#     return reversed_string
+
+
+# print("Input your string")
+# input_string = input()
+
+# reversed_string = reverse_word(input_string)
+# print("Reversed word", reversed_string)
+
+# below is the code without function
+
+def reverse_string_wordwise(s):
+
+    words = []
+    current_word = ''
+
+    for char in s:
+        if char == ' ':
+            words.append(current_word)
+            current_word = ' '
+        else:
+            current_word += char
+    words.append(current_word)
+
+    reversed_words = []
+    for i in range(len(words) - 1, -1, -1):
+        reversed_words.append(words[i])
+
+    reversed_string = ' '.join(reversed_words)
+    
+    return reversed_string
+
+
+s = "you are my world"
+print("Original string:", s)
+print("Reversed string wordwise:", reverse_string_wordwise(s))

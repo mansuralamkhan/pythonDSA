@@ -1,0 +1,17 @@
+def union(arr1, arr2):
+
+    union_set = set()
+
+    for num in arr1:
+        union_set.add(num)
+    for num in arr2:
+        union_set.add(num)
+    
+    return list(union_set)
+arr1 = list(map(int, input("Enter the elements of the fist array seperated by space: ").split()))
+
+arr2 = list(map(int, input("Enter the elements of the second array seperated by space: ").split()))
+
+result = union(arr1, arr2)
+
+print("Union of the two arrays", result)

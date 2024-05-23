@@ -1,0 +1,19 @@
+def find_frequency(arr):
+
+    frequency_dict = {}
+
+    for num in arr:
+        if num in frequency_dict:
+            frequency_dict[num]+=1
+        else:
+            frequency_dict[num] = 1
+    return frequency_dict
+
+arr = input("Enter the array:").split()
+
+arr = [int(x) for x in arr]
+
+frequency = find_frequency(arr)
+print("Frequency of each element", frequency)
+
+

@@ -1,0 +1,24 @@
+def sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+    return arr
+
+def remove_duplicates(arr):
+    unique_elements = []
+    for num in arr:
+        if num not in unique_elements:
+            unique_elements.append(num)
+    sorted_arr = sort(unique_elements)
+    return sorted_arr
+
+arr = input("Enter the elements of the array separated by space: ").split()
+arr = [int(x) for x in arr]
+
+unique_array = remove_duplicates(arr)
+
+print(f"Array with duplicates removed and sorted: {unique_array}")
+print(len(unique_array))
+print("Second Largest:", unique_array[len(unique_array)-2])

@@ -1,0 +1,36 @@
+def bubble_sort(arr):
+
+    n = len(arr)
+
+    for i in range(n):
+
+        for j in range(0, n -i-1):
+
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+
+    return arr
+
+
+
+def merge_sorted_arrays(arr1, arr2):
+
+    combined_array = arr1 + arr2
+
+    sorted_array = bubble_sort(combined_array)
+
+    return sorted_array
+
+
+arr1 = input("Enter the elements of the first sorted array seperated by space: ").split()
+arr1 = [int(x) for x in arr1]
+
+arr2 = input("Enter the elements of the first sorted array seperated by space: ").split()
+arr2 = [int(x) for x in arr2]
+
+merged_array = merge_sorted_arrays(arr1, arr2)
+
+print("merged sorted array", merged_array)
+
+
+

@@ -1,0 +1,14 @@
+def sum_of_element(arr):
+
+    sum_of_element = 0
+
+    for num in arr:
+        sum_of_element += num
+    return sum_of_element
+
+
+arr = input("Enter an array of number: ").split()
+
+arr = [int(x) for x in arr]
+
+print("Sum of element of array: ", sum_of_element(arr))

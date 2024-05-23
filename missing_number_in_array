@@ -1,0 +1,19 @@
+def find_missing_number(arr):
+    n = len(arr) + 1
+
+    expected_sum = n * (n + 1) // 2
+
+    actual_sum = sum(arr)
+
+    missing_number = expected_sum - actual_sum
+
+    return missing_number
+
+
+arr = input("Enter the elements :").split()
+
+arr = [int(x) for x in arr]
+
+missing_number = find_missing_number(arr)
+
+print("Missing Number:", missing_number)

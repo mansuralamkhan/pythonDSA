@@ -1,0 +1,17 @@
+def remove_duplicates(arr):
+
+    unique_elements = []
+    for num in arr:
+        if num not in unique_elements:
+            unique_elements.append(num)
+    return unique_elements
+
+arr = input("Enter the elements of the array seperated by space: ").split()
+arr = [int(x) for x in arr]
+
+unique_array = remove_duplicates(arr)
+
+# print("Array with duplicates removed", unique_array)
+print(f"Array with duplicates removed: {unique_array}")
+
+

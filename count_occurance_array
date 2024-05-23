@@ -1,0 +1,17 @@
+def count_occurences(arr, target):
+
+    count = 0
+
+    for element in arr:
+        if element == target:
+            count +=1
+    return count
+
+arr = input("Enter the elements of the array seperated by space: ").split()
+arr = [int(x) for x in arr]
+
+target = int(input("Enter the elements to count occurence of :"))
+
+occurences = count_occurences(arr, target)
+
+print(f"Number of occurencs of {target}:{occurences}")

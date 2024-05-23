@@ -1,0 +1,46 @@
+# def is_paliandrome(s):
+#     s = s.replace(' ', '').lower()
+
+
+#     start = 0
+#     end = len(s) -1
+
+#     while start < end:
+#         if s[start] != s[end]:
+#             return False
+        
+#         start +=1
+#         end -= 1
+
+#     return True
+
+# s = "A man a plan a canal Panama"
+# print("Is the sting a paliandrome", is_paliandrome(s))
+
+
+#Wordwise
+
+def is_paliandrome_wordwise(s):
+    words = []
+    current_words = ''
+    for char in s:
+        if char == ' ':
+            words.append(current_words)
+        else:
+            current_words+=char
+    words.append(current_words)
+
+
+    start = 0
+    end = len(words) - 1
+
+    while start < end:
+        if words[start] != words[end]:
+            return False
+        
+        start +=1
+        end -= 1
+    return True
+
+s = "one two one"
+print("Is the string a paliandrome word-wise?", is_paliandrome_wordwise(s))
